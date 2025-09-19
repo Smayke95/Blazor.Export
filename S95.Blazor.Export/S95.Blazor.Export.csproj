@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Product>S95.Blazor.Export</Product>
+    <PackageId>S95.Blazor.Export</PackageId>
+    <Title>S95.Blazor.Export</Title>
+    <Description>Export library for tables in Blazor.</Description>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageTags>blazor export</PackageTags>
+    <Authors>Smayke95</Authors>
+    <PackageProjectUrl>https://github.com/Smayke95/Blazor.Export</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Smayke95/Blazor.Export</RepositoryUrl>
+    <PackageIcon>icon-open-ai.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\icon-open-ai.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\icon-open-ai.svg" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="DocX" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+    <PackageReference Include="QuestPDF" Version="2025.7.1" />
+  </ItemGroup>
+
+</Project>
