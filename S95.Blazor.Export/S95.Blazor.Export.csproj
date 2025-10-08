@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Product>S95.Blazor.Export</Product>
@@ -15,17 +15,16 @@
     <Authors>Smayke95</Authors>
     <PackageProjectUrl>https://github.com/Smayke95/Blazor.Export</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Smayke95/Blazor.Export</RepositoryUrl>
-    <PackageIcon>icon-open-ai.png</PackageIcon>
+    <PackageIcon>icon-export.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
+    
   <ItemGroup>
-    <EmbeddedResource Include="Icons\icon-open-ai.png">
+    <EmbeddedResource Include="Icons\icon-export.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </EmbeddedResource>
-    <EmbeddedResource Include="Icons\icon-open-ai.svg" />
   </ItemGroup>
     
   <ItemGroup>
@@ -38,8 +37,7 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.0" />
     <PackageReference Include="DocX" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
-    <PackageReference Include="QuestPDF" Version="2025.7.1" />
+    <PackageReference Include="PDFsharp" Version="6.2.2" />
   </ItemGroup>
 
 </Project>

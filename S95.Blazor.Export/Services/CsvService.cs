@@ -4,7 +4,7 @@ using System.Text;
 
 namespace S95.Blazor.Export.Services;
 
-public class CsvService : ICsvService
+public class CsvService : IBaseExportService
 {
     public byte[] Export<T>(IEnumerable<string> columns, IEnumerable<T> data)
     {

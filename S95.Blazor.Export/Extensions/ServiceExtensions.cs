@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PdfSharp.Fonts;
 using System.Reflection;
 
 namespace S95.Blazor.Export.Extensions;
@@ -7,6 +8,8 @@ public static class ServiceExtensions
 {
     public static void AddExportServices(this IServiceCollection serviceCollection)
     {
+        GlobalFontSettings.UseWindowsFontsUnderWindows = true;
+
         var services = Assembly
             .GetExecutingAssembly()
             .GetTypes()
@@ -18,6 +21,8 @@ public static class ServiceExtensions
 
         foreach (var service in services)
         {
+            serviceCollection.AddScoped(service);
+
             var interfaces = service
                 .GetInterfaces()
                 .Where(x => !x.IsGenericType);
