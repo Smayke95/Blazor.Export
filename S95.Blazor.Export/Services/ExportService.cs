@@ -23,50 +23,40 @@ public class ExportService : IExportService
     }
 
     public byte[] ExportToCsv<T>(IEnumerable<T> data)
-    {
-        var columns = typeof(T)
-            .GetExportProperties()
-            .Select(x => x.CustomAttributes.FirstOrDefault(y => y.AttributeType.Name == "DisplayAttribute")?.NamedArguments.FirstOrDefault().TypedValue.ToString() ?? x.Name);
-
-        return CsvService.Export(columns, data);
-    }
+        => CsvService.Export(GetColumns<T>(), data);
 
     public byte[] ExportToCsv<T>(IEnumerable<string> columns, IEnumerable<T> data)
         => CsvService.Export(columns, data);
 
     public byte[] ExportToExcel<T>(IEnumerable<T> data)
-    {
-        var columns = typeof(T)
-            .GetExportProperties()
-            .Select(x => x.CustomAttributes.FirstOrDefault(y => y.AttributeType.Name == "DisplayAttribute")?.NamedArguments.FirstOrDefault().TypedValue.ToString() ?? x.Name);
-
-        return ExcelService.Export(columns, data);
-    }
+        => ExcelService.Export(GetColumns<T>(), data);
 
     public byte[] ExportToExcel<T>(IEnumerable<string> columns, IEnumerable<T> data)
         => ExcelService.Export(columns, data);
 
     public byte[] ExportToPdf<T>(IEnumerable<T> data)
-    {
-        var columns = typeof(T)
-            .GetExportProperties()
-            .Select(x => x.CustomAttributes.FirstOrDefault(y => y.AttributeType.Name == "DisplayAttribute")?.NamedArguments.FirstOrDefault().TypedValue.ToString() ?? x.Name);
-
-        return PdfService.Export(columns, data);
-    }
+        => PdfService.Export(GetColumns<T>(), data);
 
     public byte[] ExportToPdf<T>(IEnumerable<string> columns, IEnumerable<T> data)
         => PdfService.Export(columns, data);
 
     public byte[] ExportToWord<T>(IEnumerable<T> data)
-    {
-        var columns = typeof(T)
-            .GetExportProperties()
-            .Select(x => x.CustomAttributes.FirstOrDefault(y => y.AttributeType.Name == "DisplayAttribute")?.NamedArguments.FirstOrDefault().TypedValue.ToString() ?? x.Name);
-
-        return WordService.Export(columns, data);
-    }
+        => WordService.Export(GetColumns<T>(), data);
 
     public byte[] ExportToWord<T>(IEnumerable<string> columns, IEnumerable<T> data)
         => WordService.Export(columns, data);
+
+    private IEnumerable<string> GetColumns<T>()
+    {
+        return typeof(T)
+            .GetExportProperties()
+            .Select(x =>
+                x.CustomAttributes
+                    .FirstOrDefault(y => y.AttributeType.Name == "DisplayAttribute")?
+                    .NamedArguments.FirstOrDefault()
+                    .TypedValue
+                    .Value?
+                    .ToString() ?? x.Name
+            );
+    }
 }

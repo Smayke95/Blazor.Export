@@ -8,9 +8,9 @@
     <PackageId>S95.Blazor.Export</PackageId>
     <Title>S95.Blazor.Export</Title>
     <Description>Export library for tables in Blazor.</Description>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
     <PackageTags>blazor export</PackageTags>
     <Authors>Smayke95</Authors>
     <PackageProjectUrl>https://github.com/Smayke95/Blazor.Export</PackageProjectUrl>
