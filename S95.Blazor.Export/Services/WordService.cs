@@ -34,15 +34,15 @@ public class WordService : IBaseExportService
         layout.type = ST_TblLayoutType.@fixed;
         table.Width = 5000;
 
-        for (var x = 0; x < columns.Count(); x++)
+        for (var i = 0; i < columns.Count(); i++)
         {
-            table.SetColumnWidth(x, (ulong)(5000 / columns.Count()));
-            table.GetRow(0).GetCell(x).SetText(columns.ElementAt(x));
+            table.SetColumnWidth(i, (ulong)(5000 / columns.Count()));
+            table.GetRow(0).GetCell(i).SetText(columns.ElementAt(i));
         }
 
-        for (var x = 0; x < items.Count; x++)
+        for (var i = 0; i < items.Count; i++)
             for (var y = 0; y < properties.Count; y++)
-                table.GetRow(x + 1).GetCell(y).SetText(properties[y].GetValue(items[x])?.ToString() ?? string.Empty);
+                table.GetRow(i + 1).GetCell(y).SetText(properties[y].GetValue(items[i])?.ToString() ?? string.Empty);
 
         document.Write(stream);
         return stream.ToArray();
