@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="S95.Blazor.Export/S95.Blazor.Export.csproj" />
+  <Project Path="S95.Blazor.Export.Tests/S95.Blazor.Export.Tests.csproj" />
+</Solution>

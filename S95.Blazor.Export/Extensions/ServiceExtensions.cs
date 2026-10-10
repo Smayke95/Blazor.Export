@@ -1,14 +1,24 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PdfSharp.Fonts;
+using S95.Blazor.Export.Models;
 using System.Reflection;
 
 namespace S95.Blazor.Export.Extensions;
 
+/// <summary>
+/// Registers the export services in the dependency injection container.
+/// </summary>
 public static class ServiceExtensions
 {
+    /// <summary>Registers <see cref="Interfaces.IExportService"/> and the format services with default <see cref="ExportOptions"/>.</summary>
     public static void AddExportServices(this IServiceCollection serviceCollection)
+        => serviceCollection.AddExportServices(_ => { });
+
+    /// <summary>Registers <see cref="Interfaces.IExportService"/> and the format services with configured <see cref="ExportOptions"/>.</summary>
+    public static void AddExportServices(this IServiceCollection serviceCollection, Action<ExportOptions> configure)
     {
-        GlobalFontSettings.UseWindowsFontsUnderWindows = true;
+        var options = new ExportOptions();
+        configure(options);
+        serviceCollection.AddSingleton(options);
 
         var services = Assembly
             .GetExecutingAssembly()

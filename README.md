@@ -15,9 +15,9 @@ Blazor.Export helps you integrate professional document export functionality int
 ## How to use
 
 1. Install the Blazor.Export NuGet package in your Blazor project.
-2. In Program.cs (Server) add: ```builder.Services.AddExportServices();```
+2. In Program.cs (Server) add: `builder.Services.AddExportServices();`
 3. Add this JavaScript code:
-```
+```js
 function saveAsFile(filename, bytesBase64, contentType) {
     const link = document.createElement('a');
     link.download = filename;
@@ -28,7 +28,7 @@ function saveAsFile(filename, bytesBase64, contentType) {
 }
 ```
 4. Inject IExportService into your component and call the desired export method.
-```
+```csharp
 private async Task ExportAsync(ExportFormat format)
 {
     var data = new List<T> { };
@@ -55,8 +55,8 @@ private async Task ExportAsync(ExportFormat format)
 }
 ```
 
-3. If you using WebAssembly then add ExportController on Server:
-```
+5. If you are using WebAssembly, add an ExportController on the Server:
+```csharp
 public class ExportController(IExportService exportService) : ControllerBase
 {
     private readonly IExportService ExportService = exportService;
@@ -95,6 +95,28 @@ public class ExportController(IExportService exportService) : ControllerBase
 }
 ```
 
-## Licence
+## Formatting
+
+By default dates are exported as `yyyy-MM-dd`, times as `HH:mm:ss` and numbers with the invariant culture, so the output does not depend on the server culture. Excel keeps native numbers and dates.
+
+Change it for all exports:
+```csharp
+builder.Services.AddExportServices(options =>
+{
+    options.Culture = new CultureInfo("bs-Latn-BA");
+    options.DateFormat = "dd.MM.yyyy.";
+    options.DateTimeFormat = "dd.MM.yyyy. HH:mm";
+});
+```
+
+Or for a single property:
+```csharp
+[DisplayFormat(DataFormatString = "{0:N2} KM", NullDisplayText = "-")]
+public decimal? Price { get; set; }
+```
+
+## License
 
 Project is licensed under the [MIT License](https://github.com/Smayke95/Blazor.Export/blob/master/LICENSE)
+
+PDF export embeds the [Liberation Sans](https://github.com/liberationfonts/liberation-fonts) font, licensed under the [SIL Open Font License 1.1](https://github.com/Smayke95/Blazor.Export/blob/master/S95.Blazor.Export/Fonts/LiberationSans-LICENSE.txt)
